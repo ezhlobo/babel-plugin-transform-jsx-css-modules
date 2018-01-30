@@ -3,10 +3,11 @@ const plugin = require('../index.js')
 
 pluginTester({
   plugin,
+  title: 'default config',
   tests: [
     {
       title: 'does not change files without styles',
-      code: '<div className="hello"></div>;',
+      code: '<div className="global" styleName="local"></div>;',
     },
 
     {
@@ -15,7 +16,8 @@ pluginTester({
       code: `
         import './styles.css';
 
-        <div className="hello"></div>;
+        <div test="test" styleName="local"></div>;
+        <div test="test" styleName="local-one local-two"></div>;
       `,
     },
 
@@ -25,8 +27,38 @@ pluginTester({
       code: `
         import __cssmodule__ from './styles.css';
 
-        <div className="hello"></div>;
+        <div styleName="local"></div>;
+        <div styleName="local-one local-two"></div>;
       `,
     },
+
+    {
+      title: 'combines global and local styles',
+      snapshot: true,
+      code: `
+        import __cssmodule__ from './styles.css';
+
+        <div className="global" styleName="local"></div>;
+      `,
+    }
+  ],
+})
+
+pluginTester({
+  plugin,
+  pluginOptions: {
+    sourceAttribute: 'className',
+  },
+  title: 'with options: {sourceAttribute: "className"}',
+  tests: [
+    {
+      title: 'combines global and local styles',
+      snapshot: true,
+      code: `
+        import __cssmodule__ from './styles.css';
+
+        <div className="global"></div>;
+      `,
+    }
   ],
 })

@@ -1,30 +1,62 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`transform-jsx-css-modules amends class names if styles import is provided: amends class names if styles import is provided 1`] = `
+exports[`default config amends class names if styles import is provided: amends class names if styles import is provided 1`] = `
 "
 import './styles.css';
 
-<div className=\\"hello\\"></div>;
+<div test=\\"test\\" styleName=\\"local\\"></div>;
+<div test=\\"test\\" styleName=\\"local-one local-two\\"></div>;
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
 import __cssmodule__ from \\"./styles.css\\";
 
 
-<div className={[__cssmodule__[\\"hello\\"]]}></div>;
+<div test=\\"test\\" className={__cssmodule__[\\"local\\"]}></div>;
+<div test=\\"test\\" className={[__cssmodule__[\\"local-one\\"], __cssmodule__[\\"local-two\\"]]}></div>;
 "
 `;
 
-exports[`transform-jsx-css-modules does not change import if styles is imported already: does not change import if styles is imported already 1`] = `
+exports[`default config combines global and local styles: combines global and local styles 1`] = `
 "
 import __cssmodule__ from './styles.css';
 
-<div className=\\"hello\\"></div>;
+<div className=\\"global\\" styleName=\\"local\\"></div>;
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
 import __cssmodule__ from './styles.css';
 
-<div className={[__cssmodule__[\\"hello\\"]]}></div>;
+<div className={[\\"global\\", __cssmodule__[\\"local\\"]]}></div>;
+"
+`;
+
+exports[`default config does not change import if styles is imported already: does not change import if styles is imported already 1`] = `
+"
+import __cssmodule__ from './styles.css';
+
+<div styleName=\\"local\\"></div>;
+<div styleName=\\"local-one local-two\\"></div>;
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import __cssmodule__ from './styles.css';
+
+<div className={__cssmodule__[\\"local\\"]}></div>;
+<div className={[__cssmodule__[\\"local-one\\"], __cssmodule__[\\"local-two\\"]]}></div>;
+"
+`;
+
+exports[`with options: {sourceAttribute: "className"} combines global and local styles: combines global and local styles 1`] = `
+"
+import __cssmodule__ from './styles.css';
+
+<div className=\\"global\\"></div>;
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import __cssmodule__ from './styles.css';
+
+<div className={__cssmodule__[\\"global\\"]}></div>;
 "
 `;
