@@ -6,6 +6,7 @@ Transforms `className` attributes in JSX to get css-modules' references.
 
 - [Example](#example)
 - [Usage](#usage)
+- [Options](#options)
 
 ## Example
 
@@ -50,3 +51,29 @@ const Component = () => (
      ]
    }
    ```
+
+## Options
+
+- **`sourceAttribute`** (default: `styleName`)
+
+   What attribute should be transformed with CSS Modules references.
+   
+   Set to `className` to transform `<div className="hey" />` into `<div className={__cssmodules__['hey']} />`.
+   
+- **`targetAttribute`** (default: `className`)
+   
+   After converting references will be added to this attribute.
+   
+   Set to `cssmodule` to transform `<div styleName="hey" />` into `<div cssmodule={__cssmodules__['hey']} />`.
+   
+How to turn on options: [babeljs.io/docs/plugins](http://babeljs.io/docs/plugins/#pluginpreset-options). For example in `.babelrc`:
+
+```json
+{
+  "plugins": [
+    ["transform-jsx-css-modules", {
+      "option": "value",
+    }]
+  ]
+}
+```
