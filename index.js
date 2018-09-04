@@ -1,9 +1,10 @@
-const REFERENCE = '__cssmodule__'
+const REFERENCE = '__CSSM__'
 const SOURCE_ATTR_NAME = 'styleName'
 const TARGET_ATTR_NAME = 'className'
 
-const getPathChecker = state =>
-  /^\.\/styles.css$/
+const getPathChecker = state => {
+  return state.opts.pathToStyles || /^\.\/styles.css$/
+}
 
 const isCssModuleImport = (node, state) => {
   const pathChecker = getPathChecker(state)
@@ -22,7 +23,6 @@ const hasImportDecl = (path, state) => (
 )
 
 module.exports = function ({ types: t }) {
-
   const isSourceAttribute = node =>
     t.isJSXIdentifier(node.name, { name: SOURCE_ATTR_NAME })
 

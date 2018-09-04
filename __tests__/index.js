@@ -25,7 +25,7 @@ pluginTester({
       title: 'does not change import if styles is imported already',
       snapshot: true,
       code: `
-        import __cssmodule__ from './styles.css';
+        import __CSSM__ from './styles.css';
 
         <div styleName="local"></div>;
         <div styleName="local-one local-two"></div>;
@@ -36,7 +36,7 @@ pluginTester({
       title: 'combines global and local styles',
       snapshot: true,
       code: `
-        import __cssmodule__ from './styles.css';
+        import __CSSM__ from './styles.css';
 
         <div className="global" styleName="local"></div>;
       `,
@@ -83,22 +83,3 @@ pluginTester({
     },
   ],
 })
-
-// pluginTester({
-//   plugin,
-//   pluginOptions: {
-//     sourceAttribute: 'className',
-//   },
-//   title: 'with options: {sourceAttribute: "className"}',
-//   tests: [
-//     {
-//       title: 'combines global and local styles',
-//       snapshot: true,
-//       code: `
-//         import __cssmodule__ from './styles.css';
-//
-//         <div className="global"></div>;
-//       `,
-//     }
-//   ],
-// })

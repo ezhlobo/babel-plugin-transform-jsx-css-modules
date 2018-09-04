@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`with options: "pathToStyles" amends class names if styles import is provided: amends class names if styles import is provided 1`] = `
+"
+import './module.scss';
+
+<div className=\\"global-one global-two\\" styleName=\\"local-one local-two\\"></div>;
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import __CSSM__ from \\"./module.scss\\";
+
+
+<div className={[\\"global-one\\", \\"global-two\\", __CSSM__[\\"local-one\\"], __CSSM__[\\"local-two\\"]].join(\\" \\")}></div>;
+"
+`;

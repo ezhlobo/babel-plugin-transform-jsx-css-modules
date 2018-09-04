@@ -9,25 +9,25 @@ import './styles.css';
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import __cssmodule__ from \\"./styles.css\\";
+import __CSSM__ from \\"./styles.css\\";
 
 
-<div test=\\"test\\" className={__cssmodule__[\\"local\\"]}></div>;
-<div test=\\"test\\" className={[__cssmodule__[\\"local-one\\"], __cssmodule__[\\"local-two\\"]].join(\\" \\")}></div>;
+<div test=\\"test\\" className={__CSSM__[\\"local\\"]}></div>;
+<div test=\\"test\\" className={[__CSSM__[\\"local-one\\"], __CSSM__[\\"local-two\\"]].join(\\" \\")}></div>;
 "
 `;
 
 exports[`default config combines global and local styles: combines global and local styles 1`] = `
 "
-import __cssmodule__ from './styles.css';
+import __CSSM__ from './styles.css';
 
 <div className=\\"global\\" styleName=\\"local\\"></div>;
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import __cssmodule__ from './styles.css';
+import __CSSM__ from './styles.css';
 
-<div className={[\\"global\\", __cssmodule__[\\"local\\"]].join(\\" \\")}></div>;
+<div className={[\\"global\\", __CSSM__[\\"local\\"]].join(\\" \\")}></div>;
 "
 `;
 
@@ -39,10 +39,10 @@ import './styles.css';
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import __cssmodule__ from './styles.css';
+import __CSSM__ from './styles.css';
 
 
-<div className={[[test, 'string'].join(' '), __cssmodule__['local']].join(' ')}></div>;
+<div className={[[test, 'string'].join(' '), __CSSM__['local']].join(' ')}></div>;
 "
 `;
 
@@ -54,26 +54,26 @@ import './styles.css';
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import __cssmodule__ from \\"./styles.css\\";
+import __CSSM__ from \\"./styles.css\\";
 
 
-<div className={[test, __cssmodule__[\\"local-\\" + index]].join(\\" \\")}></div>;
+<div className={[test, __CSSM__[\\"local-\\" + index]].join(\\" \\")}></div>;
 "
 `;
 
 exports[`default config does not change import if styles is imported already: does not change import if styles is imported already 1`] = `
 "
-import __cssmodule__ from './styles.css';
+import __CSSM__ from './styles.css';
 
 <div styleName=\\"local\\"></div>;
 <div styleName=\\"local-one local-two\\"></div>;
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import __cssmodule__ from './styles.css';
+import __CSSM__ from './styles.css';
 
-<div className={__cssmodule__[\\"local\\"]}></div>;
-<div className={[__cssmodule__[\\"local-one\\"], __cssmodule__[\\"local-two\\"]].join(\\" \\")}></div>;
+<div className={__CSSM__[\\"local\\"]}></div>;
+<div className={[__CSSM__[\\"local-one\\"], __CSSM__[\\"local-two\\"]].join(\\" \\")}></div>;
 "
 `;
 
@@ -85,7 +85,7 @@ import './styles.css';
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import __cssmodule__ from \\"./styles.css\\";
+import __CSSM__ from \\"./styles.css\\";
 
 
 <div className=\\"global\\"></div>;
@@ -100,7 +100,7 @@ import './styles.css';
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import __cssmodule__ from \\"./styles.css\\";
+import __CSSM__ from \\"./styles.css\\";
 
 
 <div className=\\"global-one global-two\\"></div>;
