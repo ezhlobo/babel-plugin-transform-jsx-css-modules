@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-transform-jsx-css-modules",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Transform className attributes in JSX to reference CSS Modules",
   "main": "index.js",
   "author": "Eugene Zhlobo <ezhlobo@gmail.com>",
