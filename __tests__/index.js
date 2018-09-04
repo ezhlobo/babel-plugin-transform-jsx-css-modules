@@ -40,25 +40,65 @@ pluginTester({
 
         <div className="global" styleName="local"></div>;
       `,
-    }
-  ],
-})
+    },
 
-pluginTester({
-  plugin,
-  pluginOptions: {
-    sourceAttribute: 'className',
-  },
-  title: 'with options: {sourceAttribute: "className"}',
-  tests: [
     {
-      title: 'combines global and local styles',
+      title: 'leaves plain literal for global class',
       snapshot: true,
       code: `
-        import __cssmodule__ from './styles.css';
+        import './styles.css';
 
         <div className="global"></div>;
       `,
-    }
+    },
+
+    {
+      title: 'leaves plain literals for global classes',
+      snapshot: true,
+      code: `
+        import './styles.css';
+
+        <div className="global-one global-two"></div>;
+      `,
+    },
+
+    {
+      title: 'concats classes when globals are computed',
+      snapshot: true,
+      code: `
+        import './styles.css';
+
+        <div className={[test, 'string'].join(' ')} styleName="local"></div>;
+      `,
+    },
+
+    {
+      title: 'concats classes when locals are computed',
+      snapshot: true,
+      code: `
+        import './styles.css';
+
+        <div className={test} styleName={"local-" + index}></div>;
+      `,
+    },
   ],
 })
+
+// pluginTester({
+//   plugin,
+//   pluginOptions: {
+//     sourceAttribute: 'className',
+//   },
+//   title: 'with options: {sourceAttribute: "className"}',
+//   tests: [
+//     {
+//       title: 'combines global and local styles',
+//       snapshot: true,
+//       code: `
+//         import __cssmodule__ from './styles.css';
+//
+//         <div className="global"></div>;
+//       `,
+//     }
+//   ],
+// })

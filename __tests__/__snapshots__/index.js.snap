@@ -13,7 +13,7 @@ import __cssmodule__ from \\"./styles.css\\";
 
 
 <div test=\\"test\\" className={__cssmodule__[\\"local\\"]}></div>;
-<div test=\\"test\\" className={[__cssmodule__[\\"local-one\\"], __cssmodule__[\\"local-two\\"]]}></div>;
+<div test=\\"test\\" className={[__cssmodule__[\\"local-one\\"], __cssmodule__[\\"local-two\\"]].join(\\" \\")}></div>;
 "
 `;
 
@@ -27,7 +27,37 @@ import __cssmodule__ from './styles.css';
 
 import __cssmodule__ from './styles.css';
 
-<div className={[\\"global\\", __cssmodule__[\\"local\\"]]}></div>;
+<div className={[\\"global\\", __cssmodule__[\\"local\\"]].join(\\" \\")}></div>;
+"
+`;
+
+exports[`default config concats classes when globals are computed: concats classes when globals are computed 1`] = `
+"
+import './styles.css';
+
+<div className={[test, 'string'].join(' ')} styleName=\\"local\\"></div>;
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import __cssmodule__ from './styles.css';
+
+
+<div className={[[test, 'string'].join(' '), __cssmodule__['local']].join(' ')}></div>;
+"
+`;
+
+exports[`default config concats classes when locals are computed: concats classes when locals are computed 1`] = `
+"
+import './styles.css';
+
+<div className={test} styleName={\\"local-\\" + index}></div>;
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import __cssmodule__ from \\"./styles.css\\";
+
+
+<div className={[test, __cssmodule__[\\"local-\\" + index]].join(\\" \\")}></div>;
 "
 `;
 
@@ -43,20 +73,36 @@ import __cssmodule__ from './styles.css';
 import __cssmodule__ from './styles.css';
 
 <div className={__cssmodule__[\\"local\\"]}></div>;
-<div className={[__cssmodule__[\\"local-one\\"], __cssmodule__[\\"local-two\\"]]}></div>;
+<div className={[__cssmodule__[\\"local-one\\"], __cssmodule__[\\"local-two\\"]].join(\\" \\")}></div>;
 "
 `;
 
-exports[`with options: {sourceAttribute: "className"} combines global and local styles: combines global and local styles 1`] = `
+exports[`default config leaves plain literal for global class: leaves plain literal for global class 1`] = `
 "
-import __cssmodule__ from './styles.css';
+import './styles.css';
 
 <div className=\\"global\\"></div>;
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import __cssmodule__ from './styles.css';
+import __cssmodule__ from \\"./styles.css\\";
 
-<div className={__cssmodule__[\\"global\\"]}></div>;
+
+<div className=\\"global\\"></div>;
+"
+`;
+
+exports[`default config leaves plain literals for global classes: leaves plain literals for global classes 1`] = `
+"
+import './styles.css';
+
+<div className=\\"global-one global-two\\"></div>;
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import __cssmodule__ from \\"./styles.css\\";
+
+
+<div className=\\"global-one global-two\\"></div>;
 "
 `;
