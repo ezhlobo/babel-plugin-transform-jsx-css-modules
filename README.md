@@ -4,7 +4,7 @@ Transforms `className` attributes in JSX to get css-modules' references.
 
 [![npm version](https://img.shields.io/npm/v/babel-plugin-transform-jsx-css-modules.svg?longCache)](https://www.npmjs.com/package/babel-plugin-transform-jsx-css-modules) [![CI Status](https://img.shields.io/circleci/project/github/ezhlobo/babel-plugin-transform-jsx-css-modules/master.svg?longCache)](https://circleci.com/gh/ezhlobo/babel-plugin-transform-jsx-css-modules/tree/master)
 
-**Note:** It does not turn on CSS Modules in your project, it assumes that you made it yourself.
+**Note:** It does not turn on CSS Modules in your project, it assumes that you made it yourself (via webpack and css-loader for example).
 
 - [Example](#example)
 - [Usage](#usage)
@@ -16,9 +16,9 @@ Transforms `className` attributes in JSX to get css-modules' references.
 import './styles.css'
 
 const Component = () => (
-  <div styleName="root second-class">
-    <h1 styleName="paragraph">Hello World!</h1>
-    <p className="global" styleName="local">I'm glad to see <span className="just-global">you</span></p>
+  <div styleName="root">
+    <h1 className="paragraph">Hello World</h1>
+    <p className="global" styleName="local">I'm an example!</p>
   </div>
 )
 ```
@@ -26,12 +26,12 @@ const Component = () => (
 Will be transpiled into
 
 ```jsx
-import __cssmodule__ from './styles.css'
+import __CSSM__ from './styles.css'
 
 const Component = () => (
-  <div className={[__cssmodule__['root'], __cssmodule__['second-class']]}>
-    <h1 className={__cssmodule__['paragraph']}>Hello World!</h1>
-    <p className={['global', __cssmodule__['local']]}>I'm glad to see <span className="just-global">you</span></p>
+  <div className={__CSSM__['root']}>
+    <h1 className="paragraph">Hello World</h1>
+    <p className={["global", __CSSM__["local"]].join(" ")}>I'm an example!</p>
   </div>
 )
 ```
@@ -43,7 +43,7 @@ const Component = () => (
    ```shell
    npm install --save-dev babel-plugin-transform-jsx-css-modules
    ```
-   
+
 2. Add plugin to your `.babelrc` file
 
    ```json
@@ -56,26 +56,20 @@ const Component = () => (
 
 ## Options
 
-- **`sourceAttribute`** (default: `styleName`)
+| Name | Type | Default | Description
+| - | - | - | -
+| [`pathToStyles`](#pathtostyles) | `RegExp` | `/^\.\/styles\.css$/` | It specifies what imports should be transformed
 
-   What attribute should be transformed with CSS Modules references.
-   
-   Set to `className` to transform `<div className="hey" />` into `<div className={__cssmodules__['hey']} />`.
-   
-- **`targetAttribute`** (default: `className`)
-   
-   After converting references will be added to this attribute.
-   
-   Set to `cssmodule` to transform `<div styleName="hey" />` into `<div cssmodule={__cssmodules__['hey']} />`.
-   
-How to turn on options: [babeljs.io/docs/plugins](http://babeljs.io/docs/plugins/#pluginpreset-options). For example in `.babelrc`:
+### `pathToStyles`
 
-```json
-{
-  "plugins": [
-    ["transform-jsx-css-modules", {
-      "option": "value",
-    }]
-  ]
-}
+If you set it to `/^\.\/module\.scss$/` it will handle imports which start and end with `./module.scss`:
+
+```jsx
+import './module.scss'
+```
+
+Will be transformed into:
+
+```jsx
+import __CSSM__ from './module.scss'
 ```
