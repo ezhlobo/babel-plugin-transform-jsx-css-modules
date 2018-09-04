@@ -5,7 +5,7 @@ const SOURCE_ATTR_NAME = 'styleName'
 const TARGET_ATTR_NAME = 'className'
 
 const getPathChecker = state =>
-  state.opts.pathToStyles || /^\.\/styles.css$/
+  state.opts.pathToStyles || /^\.\/styles\.css$/
 
 const isCssModuleImport = (node, state) => {
   const pathChecker = getPathChecker(state)
