@@ -1,10 +1,11 @@
+const jsxSyntax = require('babel-plugin-syntax-jsx')
+
 const REFERENCE = '__CSSM__'
 const SOURCE_ATTR_NAME = 'styleName'
 const TARGET_ATTR_NAME = 'className'
 
-const getPathChecker = state => {
-  return state.opts.pathToStyles || /^\.\/styles.css$/
-}
+const getPathChecker = state =>
+  state.opts.pathToStyles || /^\.\/styles.css$/
 
 const isCssModuleImport = (node, state) => {
   const pathChecker = getPathChecker(state)
@@ -16,13 +17,13 @@ const setState = (state, key, value) => state.file.set(key, value)
 const getState = (state, key) => state.file.get(key)
 
 const setClasses = (state, value) => setState(state, 'classes', value)
-const getClasses = (state) => getState(state, 'classes')
+const getClasses = state => getState(state, 'classes')
 
 const hasImportDecl = (path, state) => (
   getState(state, 'hasCssModuleImport') || path.scope.hasBinding(REFERENCE)
 )
 
-module.exports = function ({ types: t }) {
+module.exports = ({ types: t }) => {
   const isSourceAttribute = node =>
     t.isJSXIdentifier(node.name, { name: SOURCE_ATTR_NAME })
 
@@ -35,7 +36,7 @@ module.exports = function ({ types: t }) {
   )
 
   return {
-    inherits: require('babel-plugin-syntax-jsx'),
+    inherits: jsxSyntax,
     name: 'transform-jsx-css-modules',
     visitor: {
       ImportDeclaration(path, state) {
@@ -85,7 +86,7 @@ module.exports = function ({ types: t }) {
                 t.stringLiteral(
                   classes
                     .map(className => className.value)
-                    .join(' ')
+                    .join(' '),
                 ),
               ))
             } else {

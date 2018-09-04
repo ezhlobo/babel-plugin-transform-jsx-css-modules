@@ -6,13 +6,24 @@
   "author": "Eugene Zhlobo <ezhlobo@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "lint": "eslint ./",
     "test": "jest"
   },
   "devDependencies": {
+    "babel-eslint": "^8.2.5",
     "babel-plugin-tester": "^5.5.1",
+    "eslint": "^4.19.1",
+    "eslint-config-datarockets-base": "^0.0.4-6",
+    "eslint-plugin-import": "^2.13.0",
     "jest": "^23.5.0"
   },
   "dependencies": {
     "babel-plugin-syntax-jsx": "^6.18.0"
+  },
+  "eslintConfig": {
+    "extends": "datarockets-base",
+    "rules": {
+      "no-param-reassign": "off"
+    }
   }
 }
