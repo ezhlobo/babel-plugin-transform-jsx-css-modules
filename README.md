@@ -2,6 +2,8 @@
 
 Transforms `className` attributes in JSX to get css-modules' references.
 
+[![npm version](https://img.shields.io/npm/v/babel-plugin-transform-jsx-css-modules.svg?longCache)](https://www.npmjs.com/package/babel-plugin-transform-jsx-css-modules) [![CI Status](https://img.shields.io/circleci/project/github/ezhlobo/babel-plugin-transform-jsx-css-modules/master.svg?longCache)](https://circleci.com/gh/ezhlobo/babel-plugin-transform-jsx-css-modules/tree/master)
+
 **Note:** It does not turn on CSS Modules in your project, it assumes that you made it yourself.
 
 - [Example](#example)
