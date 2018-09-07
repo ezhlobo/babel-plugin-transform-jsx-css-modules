@@ -58,11 +58,21 @@ const Component = () => (
 
 | Name | Type | Default | Description
 | - | - | - | -
-| [`pathToStyles`](#pathtostyles) | `RegExp` | `/^\.\/styles\.css$/` | It specifies what imports should be transformed
+| [`pathToStyles`](#pathtostyles) | `RegExp` | `/^\.\/styles\.css$/` | It specifies what imports should be transformed<br>**Note:** Escape symbols if you specify it as a string
 
 ### `pathToStyles`
 
 If you set it to `/^\.\/module\.scss$/` it will handle imports which start and end with `./module.scss`:
+
+```json
+{
+  "plugins": [
+    ["transform-jsx-css-modules", {
+      "pathToStyles": "^\\.\\/module\\.scss$"
+    }]
+  ]
+}
+```
 
 ```jsx
 import './module.scss'
