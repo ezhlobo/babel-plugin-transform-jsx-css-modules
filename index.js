@@ -4,8 +4,13 @@ const REFERENCE = '__CSSM__'
 const SOURCE_ATTR_NAME = 'styleName'
 const TARGET_ATTR_NAME = 'className'
 
-const getPathChecker = state =>
-  state.opts.pathToStyles || /^\.\/styles\.css$/
+const getPathChecker = (state) => {
+  if (state.opts.pathToStyles) {
+    return new RegExp(state.opts.pathToStyles)
+  }
+
+  return /^\.\/styles\.css$/
+}
 
 const isCssModuleImport = (node, state) => {
   const pathChecker = getPathChecker(state)
