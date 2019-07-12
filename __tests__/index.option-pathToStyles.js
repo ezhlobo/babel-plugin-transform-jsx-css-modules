@@ -6,7 +6,6 @@ const tests = [
     title: 'does nothing with default import',
     code: `
       import './styles.css';
-
       <div className="global"></div>;
     `,
   },
@@ -16,7 +15,6 @@ const tests = [
     snapshot: true,
     code: `
       import './module.scss';
-
       <div className="global-one global-two" styleName="local-one local-two"></div>;
     `,
   },

@@ -3,14 +3,11 @@
 exports[`with option "pathToStyles" as a regexp amends class names if styles import is provided: amends class names if styles import is provided 1`] = `
 "
 import './module.scss';
-
 <div className=\\"global-one global-two\\" styleName=\\"local-one local-two\\"></div>;
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
 import __CSSM__ from \\"./module.scss\\";
-
-
 <div className={[\\"global-one\\", \\"global-two\\", __CSSM__[\\"local-one\\"], __CSSM__[\\"local-two\\"]].join(\\" \\")}></div>;
 "
 `;
@@ -18,14 +15,11 @@ import __CSSM__ from \\"./module.scss\\";
 exports[`with option "pathToStyles" as a string amends class names if styles import is provided: amends class names if styles import is provided 1`] = `
 "
 import './module.scss';
-
 <div className=\\"global-one global-two\\" styleName=\\"local-one local-two\\"></div>;
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
 import __CSSM__ from \\"./module.scss\\";
-
-
 <div className={[\\"global-one\\", \\"global-two\\", __CSSM__[\\"local-one\\"], __CSSM__[\\"local-two\\"]].join(\\" \\")}></div>;
 "
 `;
